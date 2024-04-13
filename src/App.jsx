@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 
+
 export default function App() {
   const [coords, saveCoords] = useState();
   const [temp, setTemp] = useState();
   const [weather, setWeather] = useState();
   const [cityname, setCityname] = useState();
+
+  
       
      function handleGeoSucc(position) {
       console.log(position);
@@ -27,7 +30,8 @@ export default function App() {
     }
   
     function getWeather(lat, lon) {
-      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=3d83df3698d84d54a78013b6a9755c2a&units=metric`)
+      const apiKey = import.meta.env.VITE_APP_API_KEY;
+      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
         .then(res => res.json())
         .then(data => {
           console.log(data);
